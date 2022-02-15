@@ -5,8 +5,13 @@ See assignment-01.pdf for details.
 # no imports needed.
 
 def foo(x):
-    ### TODO
-    pass
+  if(x<=1):
+    return x
+  else:
+    ra = foo(x-1)
+    rb = foo(x-2)
+  return (ra+rb)
+  
 
 def longest_run(mylist, key):
     ### TODO
@@ -23,7 +28,8 @@ class Result:
         
     def __repr__(self):
         return('longest_size=%d left_size=%d right_size=%d is_entire_range=%s' %
-              (self.longest_size, self.left_size, self.right_size, self.is_entire_range))
+              (self.longest_size, self.left_size, self.right_size,
+               self.is_entire_range))
     
     
 def longest_run_recursive(mylist, key):

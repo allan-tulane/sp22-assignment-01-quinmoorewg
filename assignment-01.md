@@ -60,7 +60,8 @@ $$
 
   - 2a. (6 pts) Translate this to Python code -- fill in the `def foo` method in `main.py`  
 
-  - 2b. (6 pts) What does this function do, in your own words?  
+  - 2b. (6 pts) What does this function do, in your own words?
+  It is saying if x is less than or equal to 0, then it will return x. Otherwise it will create two variables ra, and rb. They do the recursive of the foo function with ra = x-1 and rb = x-2. They are then added together.
 
 .  
 .  
