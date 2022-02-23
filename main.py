@@ -14,8 +14,22 @@ def foo(x):
   
 
 def longest_run(mylist, key):
-    ### TODO
-    pass
+    longest = 0
+    temp = 0
+    for i in range (len(mylist)):
+      if mylist[i]==key:
+        temp = temp + 1
+      else:
+        if temp > longest:
+          longest = temp
+        temp = 0
+      if i == len(mylist)-1 and temp > longest:
+        longest = temp
+    return longest
+  
+        
+      
+    
 
 
 class Result:
@@ -33,8 +47,36 @@ class Result:
     
     
 def longest_run_recursive(mylist, key):
-    ### TODO
-    pass
+    #base case
+    if len(mylist)==1:
+      if mylist[0] == key:
+        return Result(1,1,1,True)
+      else:
+        return Result(0,0,0, False)
+    left = longest_run_recursive(mylist[:len(mylist)//2])
+    right = longest_run_recursive(mylist[len(mylist)//2:])
+    left_length = left.longest_size
+    right_length = right.longest_size
+    longest = None
+    is_entire = None
+    if left.is_entire_range and right.is_entire_range:
+      left_length = len(mylist)
+      right_length = len(mylist)
+      longest = left_length + right_length
+      is_entire = True
+    elif left.is_entire_range and not right.is_entire_range:
+      longest = left_length + right.left_size
+      is_entire = False
+      left_length = longest
+    elif not left.is_entire_range and right.is_entire_range:
+      longest = right_length + left.right_size
+      is_entire = False
+      right_length = longest
+    else:
+      longest = max(left,right)
+      is_entire = False
+
+    return(Result(left_length, right_length, longest, is_entire))
 
 ## Feel free to add your own tests here.
 def test_longest_run():
